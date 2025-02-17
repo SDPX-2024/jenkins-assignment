@@ -18,7 +18,7 @@ def plus(num1, num2):
             if ans.is_integer():
                 ans = int(ans)
             
-            result = {'result': ans}
+            result = {'result': round(ans, 2)}
             return jsonify(result), 200
 
         except ValueError:
