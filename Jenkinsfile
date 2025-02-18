@@ -44,7 +44,9 @@ pipeline {
         stage('Push Image to Registry') {
             steps {
                 sh 'echo $REGISTRY_CREDENTIALS_PSW  | docker login ghcr.io -u $REGISTRY_CREDENTIALS_USR --password-stdin'
+                sh "docker tag ${IMAGE_NAME}:${BUILD_ID} ${IMAGE_NAME}:latest"
                 sh "docker push ${IMAGE_NAME}:${BUILD_ID}"
+                sh "docker push ${IMAGE_NAME}:latest"
             }
         }
 
@@ -56,7 +58,7 @@ pipeline {
                 sh returnStatus: true, script: "docker stop ${APP_NAME}"
                 sh returnStatus: true, script: "docker rm ${APP_NAME}"
                 sh 'echo $REGISTRY_CREDENTIALS_PSW  | docker login ghcr.io -u $REGISTRY_CREDENTIALS_USR --password-stdin'
-                sh "docker run -dp 5000:5001 --name ${APP_NAME} ${IMAGE_NAME}:${BUILD_ID}"
+                sh "docker run -dp 5000:5001 --name ${APP_NAME} ${IMAGE_NAME}:latest"
             }
         }
     }
