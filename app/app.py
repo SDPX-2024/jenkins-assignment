@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/getcode', methods=['GET'])
 def getcode():
-    return "Let Offer to Petch pls, Agoda"
+    return "Let Offer to Petch pls, Agoda. I want Momo"
 
 @app.route('/plus/<num1>/<num2>', methods=['GET'])
 def plus(num1, num2):
