@@ -5,7 +5,6 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'ghcr.io/sdpx-2024/jenkins-assignment'
-        // REGISTRY_CREDENTIALS = credentials('ghcr-credentials')
         REGISTRY_CREDENTIALS = credentials('ghcr-pat')
         APP_NAME = 'plus-api'
         ROBOT_REPO = 'https://github.com/SDPX-2024/jenkins-robot'
