@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sh "docker run -dp 5000:5001 --name ${APP_NAME} ${IMAGE_NAME}:${BUILD_ID}"
                 git branch: "${ROBOT_BRANCH}", url: "${ROBOT_REPO}"
-                sh "robot plus.robot"
+                sh "python3 -m robot --outputdir /home/test/robot_results/ plus.robot "
             }
 
             post {
