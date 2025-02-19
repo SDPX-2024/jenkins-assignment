@@ -59,6 +59,7 @@ pipeline {
                 sh 'echo $REGISTRY_CREDENTIALS_PSW  | docker login ghcr.io -u $REGISTRY_CREDENTIALS_USR --password-stdin'
                 sh "docker pull ${IMAGE_NAME}:latest"
                 sh "docker run -dp 5000:5001 --name ${APP_NAME} ${IMAGE_NAME}:latest"
+                sh returnStatus: true, script: "docker images -q -f \"dangling=true\" | xargs -r docker rmi"
             }
         }
     }
